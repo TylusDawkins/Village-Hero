@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight Board</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <h1>Welcome Warrior! A new threat approaches your homeland with his minions. Fell your foes and save the day!</h1>
+    <div class="main">
+        <div id="banner1"></div>
+        <div id="game">
+            <div id="gameboard">
+                <input type="text" id="fowardkey" onkeydown="attack()">
+                <div class="contents">
+                    <section id="hero"><img src="./assets/warrior.gif"> </section>
+                    <section id="enemy"><img src="./assets/goblin.gif"></section>
+                </div>
+                <section id="menu">This will be a log</section>
+            </div>
+        </div>
+        <div id="banner2"></div>
+    </div>
+</body>
+</html>

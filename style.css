@@ -1,0 +1,30 @@
+#game{
+    display:flex;
+    justify-content: center;
+}
+
+#gameboard{
+    background-color: rgba(19, 204, 19, 0.329);
+    height: 650px;
+    width: 85em;
+    flex-direction: row;
+}
+.contents{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#menu{
+    display:flex;
+}
+#hero{
+    display:flex;
+    border: 1px black solid;
+}
+#enemy{
+    display:flex;
+    border: 1px black solid;
+}
+#fowardkey{
+    display:none
+}
