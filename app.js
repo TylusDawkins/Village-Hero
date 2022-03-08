@@ -1,9 +1,4 @@
-// Variables
-const logDisplay = document.querySelector('#log')
-let log = []
-logDisplay.innerText = `${log[0]}`
-
-
+// Variables/Classes/functions
 class Enemy {
     constructor(enemyName,healthPoints,attack,defense){
         this.enemyName=enemyName
@@ -22,34 +17,35 @@ let hero = {
 }
 
 const goblin = new Enemy("Goblin",50,5,2)
-console.log(goblin)
 
-
-
-
-
-const heroHpDisplay = document.querySelector('#herohp')
-const heroHp = hero.healthPoints
-heroHpDisplay.innerText = `${heroHp} HP`
-
-const enemyHpDisplay = document.querySelector('#enemyhp')
-let enemyHp = goblin.healthPoints
-enemyHpDisplay.innerText = `${enemyHp} HP`
+let enemyAction = () => {
+if(0<heroHp){
+    let damage = goblin.attack
+    heroHp -= damage
+    heroHpDisplay.innerText= heroHp
+    checkHeroHp()
+    log.push(`Hero took ${damage} damage! They now have ${heroHp}`)
+    updateLog()
+}
+}
 
 // Fighting Logic
 let turn = 1
 
 let playerTurn = () => {
     if(0 < enemyHp){
-        enemyHp -= hero.strength-goblin.defense
+        let damage = hero.strength-goblin.defense
+        enemyHp -= damage
         enemyHpDisplay.innerText= enemyHp
+        checkEnemyHp()
+        log.push(`Goblin took ${damage} damage! it now has ${enemyHp}`)
+        updateLog()
         if(0> enemyHp){
             enemyHp=0
             enemyHpDisplay.innerText= enemyHp
         }
     }
-    else enemyHp=0, enemyHpDisplay.innerText= enemyHp
-
+    enemyAction()
 }
 // if(turn=1){
 //     player
@@ -60,8 +56,44 @@ let playerTurn = () => {
 
 
 //Queries and Event Listenters
+
+//Hero displays and variables
+const heroHpDisplay = document.querySelector('#herohp')
+let heroHp = hero.healthPoints
+heroHpDisplay.innerText = `${heroHp} HP`
+let checkHeroHp = () => {
+    if(0>heroHp){
+        heroHp = 0
+        heroHpDisplay.innerText= HeroHp
+    }
+}
+
+//Goblin displays and variables
+const enemyHpDisplay = document.querySelector('#enemyhp')
+let enemyHp = goblin.healthPoints
+enemyHpDisplay.innerText = `${enemyHp} HP`
+let checkEnemyHp = () => {
+    if(0>enemyHp){
+        enemyHp = 0
+        enemyHpDisplay.innerText= enemyHp
+    }
+}
+
+//Button stuff
 const attackB = document.querySelector('#attack')
 attackB.addEventListener('click',playerTurn)
+
+//Log stuff
+let logDisplay = document.querySelector('#log')
+let log = ['Hero, What will you do?',]
+logDisplay.innerText = `${log}`
+let updateLog = () =>{
+    logDisplay.innerText = `${log[log.length-2]}
+    ${log[log.length-1]}`
+}
+
+
+
 
 
 
