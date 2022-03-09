@@ -12,6 +12,15 @@
     width: 85em;
     flex-direction: row;
 }
+#resultscreen{
+    display:none;
+    height: 500px;
+    width: 60em;
+    position:absolute;
+    left: 25em;
+    top: 10em;
+    background-color: rgb(175, 149, 110);
+}
 .contents{
     display:flex;
     flex-direction: row;

@@ -11,12 +11,12 @@ class Enemy {
 let hero = {
     heroName: "Hero",
     healthPoints: 250,
-    strength:10,
+    strength:25,
     defense:10,
     MP: 100,
 }
 
-const goblin = new Enemy("Goblin",50,5,2)
+const goblin = new Enemy("Goblin",50,5,)
 
 let enemyAction = () => {
 if(0<heroHp){
@@ -26,34 +26,41 @@ if(0<heroHp){
     checkHeroHp()
     log.push(`Hero took ${damage} damage! They now have ${heroHp}`)
     updateLog()
+
 }
+}
+
+const checkWinner = ()=>{
+    if(0==enemyHp){
+        isFightingActive = false
+        resultsDisplay.innerText='Hero Wins Please Re-start!!'
+        resultsDisplay.style.display='block';
+
+    }
+    else if(0==heroHp){
+        isFightingActive = false
+        resultsDisplay.innerText='Enemy Wins! Please Re-start!'
+        resultsDisplay.style.display='block';
+    }
 }
 
 // Fighting Logic
-let turn = 1
+isFightingActive = true 
 
 let playerTurn = () => {
-    if(0 < enemyHp){
+    if(isFightingActive == true){
         let damage = hero.strength-goblin.defense
         enemyHp -= damage
         enemyHpDisplay.innerText= enemyHp
         checkEnemyHp()
+        checkWinner()
         log.push(`Goblin took ${damage} damage! it now has ${enemyHp}`)
         updateLog()
-        if(0> enemyHp){
-            enemyHp=0
-            enemyHpDisplay.innerText= enemyHp
-        }
+        enemyAction()
+        checkHeroHp()
+        checkWinner()
     }
-    enemyAction()
 }
-// if(turn=1){
-//     player
-// }
-
-
-//Misc
-
 
 //Queries and Event Listenters
 
@@ -64,7 +71,7 @@ heroHpDisplay.innerText = `${heroHp} HP`
 let checkHeroHp = () => {
     if(0>heroHp){
         heroHp = 0
-        heroHpDisplay.innerText= HeroHp
+        heroHpDisplay.innerText= heroHp
     }
 }
 
@@ -91,6 +98,9 @@ let updateLog = () =>{
     logDisplay.innerText = `${log[log.length-2]}
     ${log[log.length-1]}`
 }
+
+//Results stuff
+const resultsDisplay = document.querySelector('#resultscreen')
 
 
 
