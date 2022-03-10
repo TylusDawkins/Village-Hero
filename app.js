@@ -16,9 +16,6 @@ let hero = {
     MP: 100,
 }
 
-
-
-
 const goblin = new Enemy("Goblin",100,5,0)
 
 const skeleton = new Enemy("Skeleton", 150,10,5)
@@ -43,13 +40,17 @@ if(0<heroHp){
 const checkWinner = ()=>{
     if(0==enemyHp){
         isFightingActive = false
-        resultsDisplay.innerText='Hero Wins Please Re-start!!'
+        resultText.innerText='Hero Wins Please restart!!'
         resultsDisplay.style.display='block';
+        clearLog()
+        updateLog()
     }
     else if(0==heroHp){
         isFightingActive = false
-        resultsDisplay.innerText='Enemy Wins! Please Re-start!'
+        resultText.innerText='Enemy Wins! Please restart!'
         resultsDisplay.style.display='block';
+        clearLog()
+        updateLog()
     }
 }
 
@@ -70,6 +71,24 @@ const attack = () =>{
     }
 }
 
+const specialAttack = () =>{
+    const hitChance = Math.floor(Math.random()*4)
+    if(hitChance===0){
+        log.push(`${hero.title} missed his special Attack! ${currentEnemy.title} has ${enemyHp} HP!`)
+        damage = 0
+        return damage
+    }
+    else{
+    let damage = Math.floor(Math.random()*20 + 10) + hero.attack - currentEnemy.defense
+    if(damage <= 0){
+        damage = 1
+    }
+    log.push(`${currentEnemy.title} took ${damage} damage! it now has ${enemyHp - damage} HP!`)
+    return damage
+    }
+}
+
+
 const enemyAttack = () =>{
     const hitChance = Math.floor(Math.random()*4)
     if(hitChance===0){
@@ -82,7 +101,7 @@ const enemyAttack = () =>{
     if(damage <= 0){
         damage = 1
     }
-    log.push(`${hero.title} took ${damage} damage! it now has ${heroHp - damage} HP!`)
+    log.push(`${hero.title} took ${damage} damage! they now have ${heroHp - damage} HP!`)
     return damage
     }
 }
@@ -90,79 +109,91 @@ const enemyAttack = () =>{
 // Fighting Logic
 isFightingActive = true 
 
-let playerTurn = () => {
+let playerAction = () => {
     if(isFightingActive == true){
+        clearLog()
         damage = attack()
         enemyHp -= damage
         enemyHpDisplay.innerText= enemyHp
         checkEnemyHp()
         checkWinner()
         enemyAction()
-        updateLog()
         checkHeroHp()
+        updateLog()
         checkWinner()
+        console.log(log)
+    }
+}
+
+let playerSpecial = () => {
+    if(isFightingActive == true){
+        clearLog()
+        damage = specialAttack()
+        enemyHp -= damage
+        enemyHpDisplay.innerText= enemyHp
+        heroMp -= 20
+        heroMpDisplay.innerText= heroMp
+        checkEnemyHp()
+        checkWinner()
+        enemyAction()
+        checkHeroHp()
+        updateLog()
+        checkWinner()
+        console.log(log)
     }
 }
 
 //Queries and Event Listenters
 
-//Hero displays and variables
-    const heroHpDisplay = document.querySelector('#herohp')
-    let heroHp = hero.healthPoints
-    heroHpDisplay.innerText = `${heroHp} HP`
-    let checkHeroHp = () => {
-        if(0>heroHp){
-            heroHp = 0
-            heroHpDisplay.innerText= heroHp
+    //Hero displays and variables
+        const heroHpDisplay = document.querySelector('#herohp')
+        let heroHp = hero.healthPoints
+        heroHpDisplay.innerText = `${heroHp} HP`
+        let checkHeroHp = () => {
+            if(0>heroHp){
+                heroHp = 0
+                heroHpDisplay.innerText= heroHp
+            }
+        }
+        const heroMpDisplay = document.querySelector('#heromp')
+        let heroMp = hero.MP
+        heroMpDisplay.innerText = `${heroMp} MP`
+
+    //Goblin displays and variables
+    const enemyHpDisplay = document.querySelector('#enemyhp')
+    let enemyHp = currentEnemy.healthPoints
+    enemyHpDisplay.innerText = `${enemyHp} HP`
+    let checkEnemyHp = () => {
+        if(0>enemyHp){
+            enemyHp = 0
+            enemyHpDisplay.innerText= enemyHp
         }
     }
 
-//Goblin displays and variables
-const enemyHpDisplay = document.querySelector('#enemyhp')
-let enemyHp = currentEnemy.healthPoints
-enemyHpDisplay.innerText = `${enemyHp} HP`
-let checkEnemyHp = () => {
-    if(0>enemyHp){
-        enemyHp = 0
-        enemyHpDisplay.innerText= enemyHp
-    }
-}
-
 //Button stuff
 const attackB = document.querySelector('#attack')
-attackB.addEventListener('click',playerTurn)
+attackB.addEventListener('click',playerAction)
+
+const specialB = document.querySelector('#special')
+specialB.addEventListener('click',playerSpecial)
 
 //Log stuff
 let logDisplay = document.querySelector('#log')
-let log = ["Hero, What will you do?",'']
-
-// Do a for each loop appending each item in the array to the log display
-// Or a for loop.
-// Remember that empty strings are falsey in JS
-// So you can literally do something like "if (log[i]){}"
-// logDisplay.innerText = `${log}`
-// let updateLog = () =>{
-//     for(let i=0; log.length; i++){
-//     logDisplay.innerText = `
-//     ${log[log.length-5]}
-//     ${log[log.length-4]}
-//     ${log[log.length-3]}
-//     ${log[log.length-2]}
-//     ${log[log.length-1]}`
-//     }
-// }
-
+let logText = document.querySelector('#logtext')
+let log = ["Hero, What will you do?"]
+logText.innerText = `${log}`
+const clearLog = () => {
+    log = []
+}
 let updateLog = () =>{
-    logDisplay.innerText = `
-    ${log[log.length-5]}
-    ${log[log.length-4]}
-    ${log[log.length-3]}
-    ${log[log.length-2]}
-    ${log[log.length-1]}`
+    logText.innerText = `${log[0]}
+    ${log[1]}`
 }
 
 //Results stuff
 const resultsDisplay = document.querySelector('#resultscreen')
+const resultText = document.querySelector('#resultscreentext')
+
 
 
 

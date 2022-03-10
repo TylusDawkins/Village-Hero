@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fight Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
@@ -16,10 +19,14 @@
         <div id="banner1"></div>
         <div id="game">
             <div id="gameboard">
-                <div id="resultscreen"></div>
+                <div id="resultscreen">
+                    <div id="resultscreentext"></div>
+                </div>
+                
                 <div class="contents">
                     <div class="character">
                         <p class="hp"h id="herohp"></p>
+                        <p class="hp"h id="heromp"></p>
                         <section class="sprite" id="hero"><img src="./assets/warrior.gif"> </section>
                     </div>
                     <div class="character">  
@@ -32,7 +39,9 @@
                     <span id="special">Special Attack</span>
                 </section>
             </div>
-            <div id="log"></div>
+            <div id="log">
+                <span id="logtext"></span>
+            </div>
         </div>
         <div id="buttons">
             <button onClick="window.location.reload();">Restart</button>

@@ -1,6 +1,14 @@
 body{
     background-image: url('assets/mossbg.jpg');
     background-size: contain;
+    font-family: 'Gideon Roman', cursive;
+}
+
+#intro{
+    color:white;
+    text-align: center;
+    background-color:rgb(66, 66, 66);
+    background-size: 50px 50px;
 }
 
 #main{
@@ -41,7 +49,13 @@ text-align: center;
     height:13em;
     background-color: grey;
     font-weight: bold;
-    margin-left:150px
+    margin-left:150px;
+}
+
+#logtext{
+    font-size: 30px;
+    width: 500px;
+    margin-top:0px
 }
 
 .sprite{
@@ -57,13 +71,17 @@ text-align: center;
     top: 10em;
     background-color: rgb(175, 149, 110);
 }
+
+#resultscreentext{
+    font-size: 45px;
+    text-align: center;
+    margin-top: 20%;
+}
+
 .contents{
     display:flex;
     flex-direction: row;
     justify-content: space-around;
-}
-#menu{
-    display:flex;
 }
 #hero{
     display:flex;
@@ -85,8 +103,9 @@ text-align: center;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 15em;
-    width: 15em;
+    align-items: center;
+    height: 10em;
+    width: 10em;
     margin-left:3em;
     margin-top: 2.5em;
     flex-wrap: wrap;
@@ -107,6 +126,7 @@ text-align: center;
 #special{
     border: 1px solid white;
     border-radius: 8%;
+    width: 3.1em;
 }
 #fight{
     color:white;
@@ -116,8 +136,4 @@ text-align: center;
 }
 #return{
     color:white;
-}
-#intro{
-    color:white;
-    text-align: center;
 }
