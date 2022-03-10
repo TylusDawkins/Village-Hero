@@ -4,13 +4,20 @@
 #game{
     display:flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 #gameboard{
+    display:flex;
     background-color: rgba(19, 204, 19, 0.329);
-    height: 650px;
+    height: 510px;
     width: 85em;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: cen;
+}
+.sprite{
+    height:128px;
+    width: 128px;
 }
 #resultscreen{
     display:none;
@@ -24,10 +31,10 @@
 .contents{
     display:flex;
     flex-direction: row;
-    justify-content: space-evenly;
 }
 #menu{
     display:flex;
+    padding: 0px;
 }
 #hero{
     display:flex;
@@ -37,11 +44,12 @@
     display:flex;
     border: 1px black solid;
 }
-#fowardkey{
-    display:none
-}
+
 #log{
     display:flex;
-    flex-direction: column;
-    position:fixed;
+    align-items: flex-start;
+    justify-content: center;
+    width:85em;
+    height:13em;
+    background-color: grey;
 }

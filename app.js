@@ -11,16 +11,19 @@ class Enemy {
 let hero = {
     heroName: "Hero",
     healthPoints: 250,
-    strength:25,
+    strength:10,
     defense:10,
     MP: 100,
 }
 
-const goblin = new Enemy("Goblin",50,5,)
+const goblin = new Enemy("Goblin",50,5,20)
 
 let enemyAction = () => {
 if(0<heroHp){
     let damage = goblin.attack
+        if(damage <= 0){
+            damage = 1
+        }
     heroHp -= damage
     heroHpDisplay.innerText= heroHp
     checkHeroHp()
@@ -50,6 +53,9 @@ isFightingActive = true
 let playerTurn = () => {
     if(isFightingActive == true){
         let damage = hero.strength-goblin.defense
+        if(damage <= 0){
+            damage = 1
+        }
         enemyHp -= damage
         enemyHpDisplay.innerText= enemyHp
         checkEnemyHp()
@@ -92,10 +98,15 @@ attackB.addEventListener('click',playerTurn)
 
 //Log stuff
 let logDisplay = document.querySelector('#log')
-let log = ['Hero, What will you do?',]
+let log = ['Hero, What will you do?','','','','','',]
 logDisplay.innerText = `${log}`
 let updateLog = () =>{
-    logDisplay.innerText = `${log[log.length-2]}
+    logDisplay.innerText = `
+    ${log[log.length-6]}
+    ${log[log.length-5]}
+    ${log[log.length-4]}
+    ${log[log.length-3]}
+    ${log[log.length-2]}
     ${log[log.length-1]}`
 }
 

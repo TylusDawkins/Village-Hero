@@ -13,25 +13,27 @@
 
     </header>
     <h1>Welcome Warrior! A new threat approaches your homeland with his minions. Fell your foes and save the day!</h1>
-    <div class="main">
+    <section class="main">
         <div id="banner1"></div>
         <div id="game">
             <div id="gameboard">
                 <div id="resultscreen"></div>
                 <div class="contents">
                     <p id="herohp"></p>
-                    <section id="hero"><img src="./assets/warrior.gif"> </section>
+                    <section class="sprite" id="hero"><img src="./assets/warrior.gif"> </section>
                     <p id="enemyhp"></p>
-                    <section id="enemy"><img src="./assets/goblin.gif"></section>
+                    <section class="sprite" id="enemy"><img src="./assets/goblin.gif"></section>
                 </div>
-                <section id="menu"><span id="attack">Attack</span>
+                <section id="menu">
+                    <span id="attack">Attack</span>
+                    <span id="special">Special Attack</span>
                 </section>
-                <footer id="log"></footer>
             </div>
+            <div id="log"></div>
         </div>
         <button onClick="window.location.reload();">Restart</button>
         <a href="./index.html">Return</a>
         <div id="banner2"></div>
-    </div>
+    </section>
 </body>
 </html>
