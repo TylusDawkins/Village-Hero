@@ -45,6 +45,22 @@ const checkWinner = ()=>{
     }
 }
 
+const attack = (obj1,obj2) =>{
+    const hitChance = Math.floor(Math.random()*4)
+    if(hitChance===0){
+        log.push('missed')
+        damage = 0
+        return damage
+    }
+    else{
+    let damage = Math.floor(Math.random()*10 + 1) + obj1.strength - obj2.defense
+    if(damage <= 0){
+        damage = 1
+    }
+    return damage
+    }
+}
+
 // Fighting Logic
 isFightingActive = true 
 
@@ -119,32 +135,32 @@ document.onkeydown = function (event) {
     switch (event.keyCode) {
        case 37:
            //Left Key
-          block()
+          blockKey()
           break;
        case 38:
            //Up key
-          dUp()
+          dUpKey()
           break;
        case 39:
            //Right key
-          attack()
+          attackKey()
           break;
        case 40:
            //Down Key
-          dDown()
+          dDownKey()
           break;
     }
  };
 
-const attack = () =>{
+const attackKey = () =>{
     console.log("Attack")
 }
-const block = () =>{
+const blockKey = () =>{
     console.log("Block")
 }
-const dUp = () =>{
+const dUpKey = () =>{
     console.log("Dodge up")
 }
-const dDown = () =>{
+const dDownKey = () =>{
     console.log("Dodge Down")
 }
