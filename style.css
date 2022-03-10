@@ -3,7 +3,7 @@
 }
 #game{
     display:flex;
-    justify-content: center;
+    text-align: ;
     flex-direction: column;
 }
 
@@ -31,10 +31,10 @@
 .contents{
     display:flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 #menu{
     display:flex;
-    padding: 0px;
 }
 #hero{
     display:flex;
