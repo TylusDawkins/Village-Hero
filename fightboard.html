@@ -10,9 +10,8 @@
 </head>
 <body>
     <header>
-
-    </header>
-    <h1>Welcome Warrior! A new threat approaches your homeland with his minions. Fell your foes and save the day!</h1>
+        <h1 id="intro">Welcome Warrior! A new threat approaches your homeland with his minions. Fell your foes and save the day!</h1>
+    </header>3
     <section class="main">
         <div id="banner1"></div>
         <div id="game">
@@ -20,11 +19,11 @@
                 <div id="resultscreen"></div>
                 <div class="contents">
                     <div class="character">
-                        <p id="herohp"></p>
+                        <p class="hp"h id="herohp"></p>
                         <section class="sprite" id="hero"><img src="./assets/warrior.gif"> </section>
                     </div>
                     <div class="character">  
-                        <p id="enemyhp"></p>
+                        <p class="hp" id="enemyhp"></p>
                         <section class="sprite" id="enemy"><img src="./assets/goblin.gif"></section>
                     </div> 
                 </div>
@@ -35,9 +34,10 @@
             </div>
             <div id="log"></div>
         </div>
-        <button onClick="window.location.reload();">Restart</button>
-        <a href="./index.html">Return</a>
-        <div id="banner2"></div>
+        <div id="buttons">
+            <button onClick="window.location.reload();">Restart</button>
+            <a id="return" href="./index.html">Return</a>
+        </div>
     </section>
 </body>
 </html>

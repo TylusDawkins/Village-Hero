@@ -1,20 +1,49 @@
-*{
-    border: 1px solid black;
+body{
+    background-image: url('assets/mossbg.jpg');
+    background-size: contain;
 }
+
+#main{
+text-align: center;
+}
+
 #game{
     display:flex;
-    text-align: ;
     flex-direction: column;
 }
 
 #gameboard{
     display:flex;
-    background-color: rgba(19, 204, 19, 0.329);
+    background-image: url('assets/bg2.jpg');
+    background-size:85em 510px;
     height: 510px;
     width: 85em;
     flex-direction: column;
-    justify-content: cen;
+    justify-content: center;
+    margin-left: 150px;
 }
+
+#indexcanvas{
+    background-image: url('assets/bg1.jpg');
+    background-size:85em 718px;
+    height: 718px;
+    width: 85em;
+    text-align: center;
+    margin-left: 150px;
+}
+
+#log{
+    display:flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    width:85em;
+    height:13em;
+    background-color: grey;
+    font-weight: bold;
+    margin-left:150px
+}
+
 .sprite{
     height:128px;
     width: 128px;
@@ -45,11 +74,48 @@
     border: 1px black solid;
 }
 
-#log{
+.hp{
+    color:white;
+    text-align: center;
+    background-color: rgba(165, 164, 164, 0.562);
+    font-weight: bold;
+}
+
+#menu{
     display:flex;
-    align-items: flex-start;
-    justify-content: center;
-    width:85em;
-    height:13em;
-    background-color: grey;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 15em;
+    width: 15em;
+    margin-left:3em;
+    margin-top: 2.5em;
+    flex-wrap: wrap;
+    border:5px double black ;
+    background-color: rgba(66, 66, 66, 0.767);
+    color: white;
+    font-weight: bold;
+}
+
+#attack{
+    border: 1px solid white;
+    border-radius: 8%;
+    width: 3em;
+}
+
+#special{
+    border: 1px solid white;
+    border-radius: 8%;
+}
+#fight{
+    color:white;
+    font-size: 5em;
+    text-decoration: none;
+    
+}
+#return{
+    color:white;
+}
+#intro{
+    color:white;
+    text-align: center;
 }

@@ -11,16 +11,16 @@ class Enemy {
 let hero = {
     heroName: "Hero",
     healthPoints: 250,
-    strength:10,
-    defense:10,
+    strength:5,
+    defense:5,
     MP: 100,
 }
 
-const goblin = new Enemy("Goblin",50,5,20)
+const goblin = new Enemy("Goblin",500,5,0)
 
 let enemyAction = () => {
 if(0<heroHp){
-    let damage = goblin.attack
+    let damage = Math.floor(Math.random()*6 + 1) + goblin.attack - hero.defense
         if(damage <= 0){
             damage = 1
         }
@@ -29,9 +29,7 @@ if(0<heroHp){
     checkHeroHp()
     log.push(`Hero took ${damage} damage! They now have ${heroHp}`)
     updateLog()
-
-}
-}
+}}
 
 const checkWinner = ()=>{
     if(0==enemyHp){
@@ -52,7 +50,7 @@ isFightingActive = true
 
 let playerTurn = () => {
     if(isFightingActive == true){
-        let damage = hero.strength-goblin.defense
+         let damage = Math.floor(Math.random()*10 + 1) + hero.strength - goblin.defense
         if(damage <= 0){
             damage = 1
         }
@@ -98,11 +96,10 @@ attackB.addEventListener('click',playerTurn)
 
 //Log stuff
 let logDisplay = document.querySelector('#log')
-let log = ['Hero, What will you do?','','','','','',]
+let log = ["Hero, What will you do?",'']
 logDisplay.innerText = `${log}`
 let updateLog = () =>{
     logDisplay.innerText = `
-    ${log[log.length-6]}
     ${log[log.length-5]}
     ${log[log.length-4]}
     ${log[log.length-3]}
