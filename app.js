@@ -1,10 +1,11 @@
 // Variables/Classes/functions
 class Enemy {
-    constructor(title,healthPoints,attack,defense){
+    constructor(title,healthPoints,attack,defense,img){
         this.title=title
         this.healthPoints=healthPoints
         this.attack=attack
         this.defense=defense
+        this.img=img
     }
 }
 
@@ -16,20 +17,27 @@ let hero = {
     MP: 100,
 }
 
-const goblin = new Enemy("Goblin",100,5,0)
+const goblin = new Enemy("Goblin",100,5,0,"<img src='./assets/goblin.gif'>")
 
-const skeleton = new Enemy("Skeleton", 150,10,5)
+const skeleton = new Enemy("Skeleton", 150,10,5, "<img src='./assets/skeleton.gif'>")
 
 const enemies = [
     goblin, 
     skeleton,
+    "end"
 ]
 
 let currentEnemy = enemies[0]
 
+let updateEnemy = () =>{
+    enemyHp = currentEnemy.healthPoints
+    enemyHpDisplay.innerText= enemyHp
+    hitSplat.forEach(hitSplatNone)
+    enemyImg.innerHTML=(`${currentEnemy.img}`)
+}
+
 let enemyAction = () => {
 if(0<heroHp){
-
     damage = enemyAttack()
     heroHp -= damage
     heroHpDisplay.innerText= heroHp
@@ -37,13 +45,20 @@ if(0<heroHp){
     updateLog()
 }}
 
-const checkWinner = ()=>{
+let checkWinner = ()=>{
     if(0==enemyHp){
-        isFightingActive = false
-        resultText.innerText='Hero Wins Please restart!!'
-        resultsDisplay.style.display='block';
-        clearLog()
-        updateLog()
+        if(currentEnemy === enemies[0]){
+            currentEnemy =enemies[1]
+            updateEnemy()
+        }
+        else if(currentEnemy === enemies[1]){
+            isFightingActive = false
+            hitSplat.forEach(hitSplatNone)
+            resultText.innerText='Hero Wins Please restart!!'
+            resultsDisplay.style.display='block';
+            clearLog()
+            updateLog()
+        }
     }
     else if(0==heroHp){
         isFightingActive = false
@@ -55,7 +70,7 @@ const checkWinner = ()=>{
 }
 
 const attack = () =>{
-    const hitChance = Math.floor(Math.random()*4)
+    const hitChance = Math.floor(Math.random()*5)
     if(hitChance===0){
         log.push(`${hero.title} missed! ${currentEnemy.title} has ${enemyHp} HP!`)
         damage = 0
@@ -72,7 +87,7 @@ const attack = () =>{
 }
 
 const specialAttack = () =>{
-    const hitChance = Math.floor(Math.random()*4)
+    const hitChance = Math.floor(Math.random()*10)
     if(hitChance===0){
         log.push(`${hero.title} missed his special Attack! ${currentEnemy.title} has ${enemyHp} HP!`)
         damage = 0
@@ -117,7 +132,7 @@ let playerAction = () => {
         enemyHp -= damage
         enemyHpDisplay.innerText= enemyHp
         enemyHitSplat.innerText=damage
-        hitSplat.forEach(hitSplayFunction)
+        hitSplat.forEach(hitSplatFunction)
         goblinSound.play()
         checkEnemyHp()
         checkWinner()
@@ -125,7 +140,6 @@ let playerAction = () => {
         checkHeroHp()
         updateLog()
         checkWinner()
-        console.log(log)
     }
 }
 
@@ -140,10 +154,9 @@ let playerSpecial = () => {
             heroMpDisplay.innerText= heroMp
             enemyHpDisplay.innerText= enemyHp
             enemyHitSplat.innerText=damage
-            hitSplat.forEach(hitSplayFunction)
+            hitSplat.forEach(hitSplatFunction)
             goblinSound.play()
             checkEnemyHp()
-            checkWinner()
             enemyAction()
             checkHeroHp()
             updateLog()
@@ -186,9 +199,14 @@ let playerSpecial = () => {
     }
     const enemyHitSplat = document.querySelector('#enemyhitsplat')
     const hitSplat = document.querySelectorAll('.hitsplat')
-    const hitSplayFunction = (x) =>{
+    const hitSplatFunction = (x) =>{
         x.style.display='flex'
     }
+    const hitSplatNone = (x) =>{
+        x.style.display='none'
+    }
+    let enemyImg=document.querySelector('#enemysprite')
+    enemyImg.innerHTML=(`${currentEnemy.img}`)
 
 
 //Button stuff
@@ -211,49 +229,9 @@ let updateLog = () =>{
     ${log[1]}`
 }
 
-//Results stuff
+//Results Stuff
 const resultsDisplay = document.querySelector('#resultscreen')
 const resultText = document.querySelector('#resultscreentext')
 
-
-
-
-
-
-
-document.onkeydown = function (event) {
-    switch (event.keyCode) {
-       case 37:
-           //Left Key
-          blockKey()
-          break;
-       case 38:
-           //Up key
-          dUpKey()
-          break;
-       case 39:
-           //Right key
-          attackKey()
-          break;
-       case 40:
-           //Down Key
-          dDownKey()
-          break;
-    }
- };
-
-const attackKey = () =>{
-    console.log("Attack")
-}
-const blockKey = () =>{
-    console.log("Block")
-}
-const dUpKey = () =>{
-    console.log("Dodge up")
-}
-const dDownKey = () =>{
-    console.log("Dodge Down")
-}
-
+//Sounds Stuff
 goblinSound = new Audio("/assets/enemyhit.mp3")
-goblinSound.play()

@@ -1,15 +1,25 @@
-/* Page Styling */
 body{
     background-image: url('assets/mossbg.jpg');
     background-size: contain;
     font-family: 'Gideon Roman', cursive;
 }
 
+/* #opaque-layer{
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100vw; 
+    height: 100vw;
+    background-color: rgba(0,0,0,0.3);
+} */
+
 #intro{
     color:white;
     text-align: center;
-    background-color:rgb(66, 66, 66);
+    background-color:rgba(66, 66, 66, .7);
     background-size: 50px 50px;
+    width: 100vw;
+    margin: .5em auto;
 }
 
 #main{
@@ -38,7 +48,7 @@ text-align: center;
     height: 718px;
     width: 85em;
     text-align: center;
-    margin-left: 150px;
+    margin: au
 }
 
 #log{

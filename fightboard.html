@@ -13,11 +13,12 @@
 </head>
 <body>
     <header>
-        <h1 id="intro">Welcome Warrior! A new threat approaches your homeland with his minions. Fell your foes and save the day!</h1>
-    </header>3
+        <h1 id="intro">Slay your Foes!</h1>
+    </header>
     <section class="main">
         <div id="banner1"></div>
         <div id="game">
+            <div id="opaque-layer">
             <div id="gameboard">
                 <div id="resultscreen">
                     <div id="resultscreentext"></div>
@@ -36,7 +37,7 @@
                     <div class="character">  
                         <p class="hp" id="enemyhp"></p>
                         <section class="sprite" id="enemy">
-                            <img src="./assets/goblin.gif">
+                            <div id="enemysprite"></div>
                             <div class="hitsplat">
                                 <span id="enemyhitsplat" class="hitsplattext"></span>
                             </div>
@@ -50,6 +51,7 @@
             </div>
             <div id="log">
                 <span id="logtext"></span>
+            </div>
             </div>
         </div>
         <div id="buttons">
