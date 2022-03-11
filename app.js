@@ -21,7 +21,7 @@ const goblin = new Enemy("Goblin",100,5,0)
 const skeleton = new Enemy("Skeleton", 150,10,5)
 
 const enemies = [
-    goblin,
+    goblin, 
     skeleton,
 ]
 
@@ -102,6 +102,7 @@ const enemyAttack = () =>{
         damage = 1
     }
     log.push(`${hero.title} took ${damage} damage! they now have ${heroHp - damage} HP!`)
+    heroHitSplat.innerText=damage
     return damage
     }
 }
@@ -115,6 +116,9 @@ let playerAction = () => {
         damage = attack()
         enemyHp -= damage
         enemyHpDisplay.innerText= enemyHp
+        enemyHitSplat.innerText=damage
+        hitSplat.forEach(hitSplayFunction)
+        goblinSound.play()
         checkEnemyHp()
         checkWinner()
         enemyAction()
@@ -127,20 +131,30 @@ let playerAction = () => {
 
 let playerSpecial = () => {
     if(isFightingActive == true){
-        clearLog()
-        damage = specialAttack()
-        enemyHp -= damage
-        enemyHpDisplay.innerText= enemyHp
-        heroMp -= 20
-        heroMpDisplay.innerText= heroMp
-        checkEnemyHp()
-        checkWinner()
-        enemyAction()
-        checkHeroHp()
-        updateLog()
-        checkWinner()
-        console.log(log)
-    }
+        if(heroMp>0){
+            clearLog()
+            damage = specialAttack()
+            enemyHp -= damage
+            enemyHpDisplay.innerText= enemyHp
+            heroMp -= 20
+            heroMpDisplay.innerText= heroMp
+            enemyHpDisplay.innerText= enemyHp
+            enemyHitSplat.innerText=damage
+            hitSplat.forEach(hitSplayFunction)
+            goblinSound.play()
+            checkEnemyHp()
+            checkWinner()
+            enemyAction()
+            checkHeroHp()
+            updateLog()
+            checkWinner()
+            console.log(log)
+        }
+        else if(heroMp===0){
+            clearLog()
+            logText.innerText = ('You are out of MP')
+        }
+}
 }
 
 //Queries and Event Listenters
@@ -158,6 +172,7 @@ let playerSpecial = () => {
         const heroMpDisplay = document.querySelector('#heromp')
         let heroMp = hero.MP
         heroMpDisplay.innerText = `${heroMp} MP`
+        const heroHitSplat = document.querySelector('#herohitsplat')
 
     //Goblin displays and variables
     const enemyHpDisplay = document.querySelector('#enemyhp')
@@ -169,6 +184,12 @@ let playerSpecial = () => {
             enemyHpDisplay.innerText= enemyHp
         }
     }
+    const enemyHitSplat = document.querySelector('#enemyhitsplat')
+    const hitSplat = document.querySelectorAll('.hitsplat')
+    const hitSplayFunction = (x) =>{
+        x.style.display='flex'
+    }
+
 
 //Button stuff
 const attackB = document.querySelector('#attack')
@@ -233,3 +254,6 @@ const dUpKey = () =>{
 const dDownKey = () =>{
     console.log("Dodge Down")
 }
+
+goblinSound = new Audio("/assets/enemyhit.mp3")
+goblinSound.play()

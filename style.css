@@ -1,3 +1,4 @@
+/* Page Styling */
 body{
     background-image: url('assets/mossbg.jpg');
     background-size: contain;
@@ -83,7 +84,12 @@ text-align: center;
     flex-direction: row;
     justify-content: space-around;
 }
+
 #hero{
+    margin-top: -30px;
+}
+
+#herosprite{
     display:flex;
     border: 1px black solid;
 }
@@ -97,6 +103,7 @@ text-align: center;
     text-align: center;
     background-color: rgba(165, 164, 164, 0.562);
     font-weight: bold;
+    border:thin solid white;
 }
 
 #menu{
@@ -137,3 +144,22 @@ text-align: center;
 #return{
     color:white;
 }
+.hitsplat{
+    display:none;
+    height:35px;
+    width:35px;
+    transform: translateX(-125px);
+    background-image:url(./assets/hitsplat.png);
+    background-size:35px 35px;
+    color:white;
+    justify-content: center;
+    align-items: center;
+}
+.hitsplattext{
+    height:35px;
+    width:35px;
+    color:white;
+    text-align: center;
+    transform: translateY(10px);
+}
+
