@@ -174,8 +174,11 @@ let playerSpecial = () => {
 
     //Hero displays and variables
         const heroHpDisplay = document.querySelector('#herohp')
+
         let heroHp = hero.healthPoints
+
         heroHpDisplay.innerText = `${heroHp} HP`
+
         let checkHeroHp = () => {
             if(0>heroHp){
                 heroHp = 0
@@ -183,54 +186,77 @@ let playerSpecial = () => {
             }
         }
         const heroMpDisplay = document.querySelector('#heromp')
+
         let heroMp = hero.MP
+
         heroMpDisplay.innerText = `${heroMp} MP`
+
         const heroHitSplat = document.querySelector('#herohitsplat')
+
 
     //Goblin displays and variables
     const enemyHpDisplay = document.querySelector('#enemyhp')
+
     let enemyHp = currentEnemy.healthPoints
+
     enemyHpDisplay.innerText = `${enemyHp} HP`
+
     let checkEnemyHp = () => {
         if(0>enemyHp){
             enemyHp = 0
             enemyHpDisplay.innerText= enemyHp
         }
     }
+
     const enemyHitSplat = document.querySelector('#enemyhitsplat')
+
     const hitSplat = document.querySelectorAll('.hitsplat')
+
     const hitSplatFunction = (x) =>{
         x.style.display='flex'
     }
+
     const hitSplatNone = (x) =>{
         x.style.display='none'
     }
+
     let enemyImg=document.querySelector('#enemysprite')
+
     enemyImg.innerHTML=(`${currentEnemy.img}`)
 
 
 //Button stuff
 const attackB = document.querySelector('#attack')
+
 attackB.addEventListener('click',playerAction)
 
+
 const specialB = document.querySelector('#special')
+
 specialB.addEventListener('click',playerSpecial)
 
 //Log stuff
 let logDisplay = document.querySelector('#log')
+
 let logText = document.querySelector('#logtext')
+
 let log = ["Hero, What will you do?"]
+
 logText.innerText = `${log}`
+
 const clearLog = () => {
     log = []
 }
+
 let updateLog = () =>{
     logText.innerText = `${log[0]}
     ${log[1]}`
 }
 
+
 //Results Stuff
 const resultsDisplay = document.querySelector('#resultscreen')
+
 const resultText = document.querySelector('#resultscreentext')
 
 //Sounds Stuff
